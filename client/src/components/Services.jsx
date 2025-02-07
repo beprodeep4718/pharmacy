@@ -11,13 +11,13 @@ const Services = () => {
       image: '/assets/storecard.png',
       title: 'Our Pharmacy Store',
       description: 'Experience the convenience of our online pharmacy store...',
-      link: '/pharmacy-store',  // Add route link
+      link: '/pharmacy-store',  
     },
     {
       image: '/assets/noticard.png',
       title: 'Medicine Alarm',
       description: 'A Medical Alarm helps users set reminders for medication schedules...',
-      link: '/medicine-alarm',  // Add route link
+      link: '/medicine-alarm',  
     },
   ];
 
@@ -33,7 +33,7 @@ const Services = () => {
         Your Health is Our Priority
       </motion.h1>
 
-      {/* Cards Section */}
+ 
       <div className="flex flex-col md:flex-row items-center justify-center gap-7 w-8/10">
         {cards.map((card, index) => (
           <motion.div
