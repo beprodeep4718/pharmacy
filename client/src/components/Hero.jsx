@@ -1,7 +1,9 @@
 import React from 'react'
+import Navbar from './Navbar'
 
 const Hero = () => {
   return (
+   
     <div className=" relative z-10 flex flex-col h-[calc(100vh-70px)] md:flex-row items-center justify-between  px-16  bg-gradient-to-r from-blue-900 to-blue-500 my-18">
 
 <div className="text-white max-w-lg">

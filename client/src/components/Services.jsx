@@ -1,26 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaArrowRight } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const Services = () => {
+  const navigate = useNavigate();
+
   const cards = [
     {
       image: '/assets/storecard.png',
       title: 'Our Pharmacy Store',
-      description: 'Experience the convenience of our online pharmacy store. Seamlessly order medications, manage prescriptions, and receive timely reminders—all in one secure, user-friendly platform. Your health, simplified.',
-      
+      description: 'Experience the convenience of our online pharmacy store...',
+      link: '/pharmacy-store',  // Add route link
     },
     {
       image: '/assets/noticard.png',
       title: 'Medicine Alarm',
-      description: 'A Medical Alarm helps users set reminders for their medication schedules. By allowing customization of timing, it sends notifications via WhatsApp or SMS to remind users when to take their medicine, ensuring adherence and reducing missed doses. ',
-      
+      description: 'A Medical Alarm helps users set reminders for medication schedules...',
+      link: '/medicine-alarm',  // Add route link
     },
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center  p-6 -mt-10">
-
+    <div className="flex flex-col items-center justify-center p-6 -mt-10">
       <motion.h1
         className="text-4xl font-bold text-center monda mb-10"
         initial={{ opacity: 0, y: -30 }}
@@ -32,10 +34,12 @@ const Services = () => {
       </motion.h1>
 
       {/* Cards Section */}
-      <div className="flex flex-col md:flex-row items-center justify-center gap-7 w-8/10 ">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-7 w-8/10">
         {cards.map((card, index) => (
-          <motion.div key={index}
-            className="bg-[#DCE9FF] shadow-lg rounded-lg overflow-hidden w-full md:w-1/2 transform transition-transform duration-300 h-110"
+          <motion.div
+            key={index}
+            onClick={() => navigate(card.link)}  // Handle click
+            className="bg-[#DCE9FF] shadow-lg rounded-lg overflow-hidden w-full md:w-1/2 transform transition-transform duration-300 h-110 cursor-pointer"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             whileHover={{ scale: 1.05, boxShadow: '0px 10px 20px rgba(0,0,0,0.3)' }}
@@ -44,12 +48,12 @@ const Services = () => {
           >
             <img src={card.image} alt={card.title} className="w-60 h-64 object-cover ml-40 pt-4" />
             <div className="p-4">
-              <h2 className="text-4xl font-bold monda flex text-center gap-3 justify-center">{card.title} <FaArrowRight /></h2>
-              <p className="text-gray-700 text-center-center mt-2 maven-pro text-left">{card.description}</p>
+              <h2 className="text-4xl font-bold monda flex text-center gap-3 justify-center">
+                {card.title} <FaArrowRight />
+              </h2>
+              <p className="text-gray-700 text-center mt-2 maven-pro text-left">{card.description}</p>
             </div>
-            </motion.div>
-          
-         
+          </motion.div>
         ))}
       </div>
       <div className="h-40"></div>
@@ -82,4 +86,4 @@ const Services = () => {
   );
 };
 
-export default Services;  
+export default Services;
