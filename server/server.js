@@ -1,6 +1,9 @@
 require("dotenv").config();
 const express = require("express");
+ 
 const app = express();
+const cors = require('cors');
+
 
 const connectDB = require("./utils/db");
 const cookieParser = require("cookie-parser");
@@ -12,9 +15,11 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
+app.use(cors());
 app.use("/user", require("./routes/user.routes"));
 app.use("/reminder", require("./routes/reminder.routes"));
+
+app.use('/api/products', require('./routes/product.routes'))
 // Default route
 app.get("/", (req, res) => {
   res.send("Hello, Node.js Server!");
