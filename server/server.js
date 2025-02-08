@@ -4,6 +4,7 @@ const app = express();
 
 const connectDB = require("./utils/db");
 const cookieParser = require("cookie-parser");
+// require("./cron/schedule");
 
 const PORT = process.env.PORT || 5000;
 
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use("/user", require("./routes/user.routes"));
+app.use("/reminder", require("./routes/reminder.routes"));
 // Default route
 app.get("/", (req, res) => {
   res.send("Hello, Node.js Server!");
