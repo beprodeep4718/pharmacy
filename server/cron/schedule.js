@@ -11,10 +11,14 @@ const User = require("../models/user.model");
 
 cron.schedule("* * * * *", async () => {
     const date = new Date();
-    const currentHour = date.getHours();
-    const currentMinute = date.getMinutes();
-    const currentTime = `${currentHour}:${currentMinute}`;
-    const reminders = await reminderModel.find({ time: currentTime });
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    const strMinutes = minutes < 10 ? '0' + minutes : minutes;
+    const currentTime = `${hours}:${strMinutes} ${ampm}`;
+    const reminders = await reminderModel.find({ time: { $in: [currentTime] } });
     reminders.forEach(async (reminder) => {
         const user = await User.findById(reminder.user);
         await client.messages.create({
