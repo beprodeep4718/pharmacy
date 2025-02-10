@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BsCart4 } from "react-icons/bs";
 import { FiMapPin } from "react-icons/fi";
 const Searchbar = () => {
   const [location, setLocation] = useState('Kolkata'); 
@@ -38,9 +39,11 @@ const Searchbar = () => {
 </div>
 
 
+<div className='flex gap-3'>
+<BsCart4 className="w-full h-[35px] scale-x-[-1]" />
 <button className="bg-white text-blue-600 px-6 py-2 rounded-md hover:bg-gray-200 transition">
   Login
-</button>
+</button></div>
     </div>
   </nav>
   );
