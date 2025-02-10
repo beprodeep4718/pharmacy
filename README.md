@@ -82,3 +82,57 @@ curl -X POST http://localhost:5000/user/register -d '{"fullname":{"firstname":"J
 ```bash
 curl -X GET http://localhost:5000/user/userinfo -H "Authorization: Bearer <token>"
 ```
+
+### Reminder Routes
+
+#### Create a Reminder
+
+**URL:** `/reminder/create`
+
+**Method:** `POST`
+
+**Headers:**
+- `Content-Type: application/json`
+- `Cookie: token=<JWT_TOKEN>`
+
+**Body:**
+```json
+{
+  "medicineName": "Medication Name",
+  "times": ["08:00", "20:00"],
+  "frequency": "daily"
+}
+```
+
+**Response:**
+- `201 Created` on success
+- `401 Unauthorized` if no token is provided
+- `400 Bad Request` if the token is invalid
+
+#### Get All Reminders
+
+**URL:** `/reminder/getAll`
+
+**Method:** `GET`
+
+**Headers:**
+- `Cookie: token=<JWT_TOKEN>`
+
+**Response:**
+- `200 OK` with a list of reminders
+- `401 Unauthorized` if no token is provided
+- `400 Bad Request` if the token is invalid
+
+#### Delete a Reminder
+
+**URL:** `/reminder/delete/:id`
+
+**Method:** `DELETE`
+
+**Headers:**
+- `Cookie: token=<JWT_TOKEN>`
+
+**Response:**
+- `200 OK` on successful deletion
+- `401 Unauthorized` if no token is provided
+- `400 Bad Request` if the token is invalid
