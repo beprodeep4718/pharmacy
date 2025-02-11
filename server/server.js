@@ -12,10 +12,13 @@ const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 5000;
 
 // Middleware to parse JSON requests
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(cors());
 app.use("/user", require("./routes/user.routes"));
 app.use("/reminder", require("./routes/reminder.routes"));
 
@@ -28,5 +31,5 @@ app.get("/", (req, res) => {
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
-  connectDB(process.env.MONGO_URI);
 });
+connectDB(process.env.MONGO_URI);
