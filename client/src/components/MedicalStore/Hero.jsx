@@ -9,7 +9,7 @@ const Hero = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/products');
+        const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/products`);
         setMedicines(response.data);
       } catch (error) {
         console.error('Error fetching products:', error);
