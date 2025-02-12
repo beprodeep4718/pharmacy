@@ -57,3 +57,7 @@ exports.userinfo = async (req, res) => {
         res.status(500).json({ error: "Error fetching user info" });
     }
 };
+exports.logout = (req, res) => {
+    res.clearCookie("token", { httpOnly: true, secure: true }); // Clear the token cookie
+    res.status(200).json({ message: "Logout successful" });
+};

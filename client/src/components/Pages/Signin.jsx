@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Signin = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [showPopup, setShowPopup] = useState(false); // Popup state
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -13,7 +15,6 @@ const Signin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/user/login`, {
         method: 'POST',
@@ -27,6 +28,14 @@ const Signin = () => {
       const data = await response.json();
       if (response.ok) {
         setMessage('Signin successful!');
+        localStorage.setItem('user', JSON.stringify(data));
+
+       
+        setShowPopup(true);
+        setTimeout(() => {
+          setShowPopup(false);
+          navigate('/'); 
+        }, 2000);
       } else {
         setMessage(data.error || 'Signin failed');
       }
@@ -37,8 +46,14 @@ const Signin = () => {
   };
 
   return (
-    <div className="flex h-screen bg-[linear-gradient(to_bottom,#4DD0E1,#FFFFFF)]">
-      {/* Left Side - Form */}
+    <div className="flex h-screen bg-[linear-gradient(to_bottom,#4DD0E1,#FFFFFF)] relative">
+      {/* Popup Notification */}
+      {showPopup && (
+        <div className="fixed top-5 right-5 bg-green-500 text-white px-4 py-2 rounded shadow-lg transition-opacity duration-300">
+          ✅ Successfully Logged In!
+        </div>
+      )}
+
       <div className="w-1/2 flex items-center justify-center">
         <div className="bg-white p-8 rounded-2xl shadow-xl w-90">
           <h2 className="text-2xl font-bold text-center mb-6 monda">Welcome Back</h2>
@@ -74,10 +89,6 @@ const Signin = () => {
               </button>
             </div>
 
-            <div className="text-center text-sm text-gray-600 mb-4 underline maven-pro">
-              New user? <Link to="/sign-up" className="underline maven-pro">Signup!</Link>
-            </div>
-
             <button
               type="submit"
               className="w-full bg-[#00B6D4] text-white p-2 rounded-3xl hover:bg-blue-400 transition"
@@ -86,7 +97,6 @@ const Signin = () => {
             </button>
           </form>
 
-          {/* Display success or error message */}
           {message && (
             <div className="text-center mt-4 text-sm text-red-500">
               {message}
@@ -95,7 +105,6 @@ const Signin = () => {
         </div>
       </div>
 
-      {/* Right Side - Image */}
       <div className="flex w-1/2 justify-center items-center mr-20">
         <img className="w-3/4 h-80" src="/assets/login.png" alt="Login Illustration" />
       </div>

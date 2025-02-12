@@ -6,8 +6,9 @@ import Services from './components/Services';
 import PharmacyStore from './components/MedicalStore/PharmacyStore';
 import MedicineAlarm from './components/MedicineAlarm';
 import Advantages from './components/Advantages';
-import Signin from './components/Signin';
-import Signup from './components/Signup';
+import Signin from './components/Pages/Signin';
+import Signup from './components/Pages/Signup';
+import Profile from './components/Pages/Profile';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
 
         <Route path="/sign-in" element={<Signin/>} />
         <Route path="/sign-up" element={<Signup/>} />
+        <Route path="/profile" element={<Profile/>} />
         <Route path="/pharmacy-store" element={<PharmacyStore />} />
         <Route path="/medicine-alarm" element={<MedicineAlarm />} />
       </Routes>
