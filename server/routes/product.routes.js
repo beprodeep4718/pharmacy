@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const productController = require('../controllers/products.controller')
+const productController = require('../controllers/products.controller');
 
-
+// Ensure the functions exist in `productController`
 router.post('/', productController.createProduct);
-// routes/product.routes.js
 router.get('/', productController.getAllProducts);
-
+router.get('/:id', productController.getProductById);
+router.put('/:id', productController.updateProduct);
+router.delete('/:id', productController.deleteProduct);
 
 module.exports = router;

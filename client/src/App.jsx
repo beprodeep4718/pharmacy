@@ -9,6 +9,7 @@ import Advantages from './components/Advantages';
 import Signin from './components/Pages/Signin';
 import Signup from './components/Pages/Signup';
 import Profile from './components/Pages/Profile';
+import ProductCard from './components/MedicalStore/ProductCard';
 
 const App = () => {
   return (
@@ -30,6 +31,9 @@ const App = () => {
         <Route path="/profile" element={<Profile/>} />
         <Route path="/pharmacy-store" element={<PharmacyStore />} />
         <Route path="/medicine-alarm" element={<MedicineAlarm />} />
+        <Route path="/product/:id" element={<ProductCard />} />
+
+
       </Routes>
     </Router>
   );
