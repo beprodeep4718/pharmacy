@@ -18,13 +18,14 @@ cron.schedule("* * * * *", async () => {
     hours = hours ? hours : 12;
     const strMinutes = minutes < 10 ? '0' + minutes : minutes;
     const currentTime = `${hours}:${strMinutes} ${ampm}`;
-    const reminders = await reminderModel.find({ time: { $in: [currentTime] } });
+    const reminders = await reminderModel.find({ times: { $in: [currentTime] } });
     reminders.forEach(async (reminder) => {
         const user = await User.findById(reminder.user);
+        console.log("sending msg");
         await client.messages.create({
             body: `Reminder: Take your medicine - ${reminder.medicineName}`,
             from: process.env.TWILIO_PHONE_NUMBER,
-            to: `+91${user.phone}`,
+            to: `${user.phone}`,
         });
     });
 });

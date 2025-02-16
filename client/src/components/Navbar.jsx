@@ -52,12 +52,20 @@ const Navbar = () => {
           </button>
         </div>
       ) : (
-        <Link
-          to="/sign-in"
-          className="px-4 py-2 bg-[#89B4FF] text-white font-semibold rounded-lg shadow-md hover:bg-gray-200"
-        >
-          Sign In
-        </Link>
+        <div className="flex gap-4">
+          <Link
+            to="/sign-in"
+            className="px-4 py-2 bg-[#89B4FF] text-white font-semibold rounded-lg shadow-md hover:bg-gray-200"
+          >
+            Sign In
+          </Link>
+          <Link
+            to="/sign-up"
+            className="px-4 py-2 text-[#89B4FF] bg-white font-semibold rounded-lg shadow-md hover:bg-gray-200"
+          >
+            Sign Up
+          </Link>
+        </div>
       )}
     </nav>
   );

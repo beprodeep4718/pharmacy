@@ -22,7 +22,6 @@ exports.register = async (req, res) => {
         res.status(500).json({ error: "Error registering user" });
     }
 };
-
 // Login a user
 exports.login = async (req, res) => {
     try {
@@ -36,7 +35,7 @@ exports.login = async (req, res) => {
             return res.status(400).json({ error: "Invalid username or password" });
         }
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-            expiresIn: "1h",
+            expiresIn: "1d",
         });
         res.cookie("token", token, { httpOnly: true, secure: true, maxAge: 3600000 });
         res.json({ message: "Login successful" });
@@ -44,7 +43,6 @@ exports.login = async (req, res) => {
         res.status(500).json({ error: "Error logging in user" });
     }
 };
-
 // Get user info
 exports.userinfo = async (req, res) => {
     try {
