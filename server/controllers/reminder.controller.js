@@ -5,7 +5,7 @@ module.exports.create = async (req, res) => {
   try {
     const reminder = new reminderModel({
       medicineName: req.body.medicineName,
-      time: req.body.time,
+      times: req.body.times,
       user: req.user.id,
       frequency: req.body.frequency,
     });

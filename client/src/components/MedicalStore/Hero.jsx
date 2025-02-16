@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const [medicines, setMedicines] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch products from the backend API
   useEffect(() => {
     const fetchProducts = async () => {
+
       try {
         const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/products`);
         setMedicines(response.data);
@@ -22,7 +23,6 @@ const Hero = () => {
 
   return (
     <div>
-      {/* Hero Section */}
       <section className="flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-[#6193FF] to-[#007BFF] p-8 md:p-16 rounded-t-3xl">
         <div className="w-full md:w-1/2 mb-6 md:mb-0">
           <img src="/assets/medishop.png" alt="Healthcare" className="w-[380px] h-[420px] -mb-16 ml-20" />
@@ -44,7 +44,6 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* Products Section */}
       <section className="p-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold text-blue-700">🔥 Today's Best Deals</h2>
@@ -58,7 +57,7 @@ const Hero = () => {
         ) : medicines.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {medicines.map((med) => (
-              <div key={med._id} className="bg-white rounded-xl shadow-md overflow-hidden p-4 hover:shadow-xl transition">
+              <Link to= {`/product/${med._id}`} key={med._id} className="bg-white rounded-xl shadow-md overflow-hidden p-4 hover:shadow-xl transition">
                 <img src={med.image} alt={med.name} className="w-full h-60 object-cover rounded-md" />
                 <h3 className="text-xl font-bold mt-2">{med.name}</h3>
                 <p className="text-gray-600 text-sm mt-1">{med.description}</p>
@@ -76,7 +75,7 @@ const Hero = () => {
                 >
                   {med.availability ? 'Add to Cart' : 'Out of Stock'}
                 </button>
-              </div>
+              </Link>
             ))}
           </div>
         ) : (
