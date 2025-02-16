@@ -1,0 +1,57 @@
+[
+    {
+      "id": 1,
+      "image": "/assets/paracetamol.jpg",
+      "name": "Paracetamol 500mg",
+      "price": 10.99,
+      "rating": 4,
+      "brand": "XYZ Pharma",
+      "expiryDate": "Dec 2025",
+      "country": "India",
+      "description": "Paracetamol helps reduce fever and pain effectively.",
+      "uses": "Used for fever, headache, and mild body pain relief.",
+      "directions": "Take one tablet with water after food, or as directed by a doctor.",
+      "quickTips": "Do not exceed the recommended dosage.",
+      "sideEffects": "May cause nausea or drowsiness in some cases.",
+      "reviews": [
+        {
+          "name": "John Doe",
+          "rating": 5,
+          "comment": "Works really well!"
+        },
+        {
+          "name": "Jane Smith",
+          "rating": 4,
+          "comment": "Good product, but delivery was slow."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "image": "/assets/amoxicillin.jpg",
+      "name": "Amoxicillin 250mg",
+      "price": 15.49,
+      "rating": 5,
+      "brand": "MediCare Labs",
+      "expiryDate": "Aug 2026",
+      "country": "USA",
+      "description": "Amoxicillin is an antibiotic used to treat various infections.",
+      "uses": "Used for bacterial infections like strep throat, pneumonia, and ear infections.",
+      "directions": "Take one capsule every 8 hours with water, or as directed by a doctor.",
+      "quickTips": "Complete the full course of antibiotics as prescribed.",
+      "sideEffects": "May cause diarrhea or allergic reactions in some cases.",
+      "reviews": [
+        {
+          "name": "Alice Brown",
+          "rating": 5,
+          "comment": "Helped me recover quickly!"
+        },
+        {
+          "name": "Bob Martin",
+          "rating": 4,
+          "comment": "Works great, but caused mild stomach upset."
+        }
+      ]
+    }
+  ]
+  
