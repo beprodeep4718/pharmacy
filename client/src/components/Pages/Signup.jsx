@@ -142,7 +142,7 @@ const Signup = () => {
                 {showPassword ? 'Hide' : 'Show'}
               </button>
             </div>
-            <div className="text-center text-sm text-gray-600 mb-4 underline maven-pro">
+            <div className="text-center cursor-pointer text-sm text-gray-600 mb-4 underline maven-pro">
               Already registered? <Link to="/sign-in" className="underline maven-pro">Login!</Link>
             </div>
             <button

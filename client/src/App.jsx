@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -9,6 +8,7 @@ import Advantages from './components/Advantages';
 import Signin from './components/Pages/Signin';
 import Signup from './components/Pages/Signup';
 import Profile from './components/Pages/Profile';
+import Footer  from './components/Footer';
 
 const App = () => {
   return (
@@ -31,6 +31,7 @@ const App = () => {
         <Route path="/pharmacy-store" element={<PharmacyStore />} />
         <Route path="/medicine-alarm" element={<MedicineAlarm />} />
       </Routes>
+      <Footer/>
     </Router>
   );
 };

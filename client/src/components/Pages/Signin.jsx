@@ -88,7 +88,7 @@ const Signin = () => {
                 {showPassword ? 'Hide' : 'Show'}
               </button>
             </div>
-
+        <Link to = '/sign-up' className=' flex flex- row underline items-center justify-center hover:text-blue-800 cursor-pointer'>New User? Register First!</Link>
             <button
               type="submit"
               className="w-full bg-[#00B6D4] text-white p-2 rounded-3xl hover:bg-blue-400 transition"
