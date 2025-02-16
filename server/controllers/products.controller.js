@@ -10,11 +10,18 @@ exports.createProduct = [
   upload.single('image'), // Middleware for handling image uploads
   async (req, res) => {
     try {
-      const { name, price, description, manufacturer, brand, expiryDate, countryOfOrigin } = req.body;
-
       if (!req.file) {
         return res.status(400).json({ message: 'Image file is required' });
       }
+
+      if (!req.body.data) {
+        return res.status(400).json({ message: 'Product data is required' });
+      }
+
+      // Parse JSON data from req.body.data
+      const productData = JSON.parse(req.body.data);
+
+      const { name, category, price, discount, stock, manufacturer, expiryDate, countryOfOrigin, description, usage, sideEffects } = productData;
 
       // Upload image to Cloudinary
       const result = await new Promise((resolve, reject) => {
@@ -25,19 +32,23 @@ exports.createProduct = [
             resolve(result);
           }
         );
-        stream.end(req.file.buffer); // Correctly send buffer to Cloudinary
+        stream.end(req.file.buffer);
       });
 
       // Save Product to MongoDB
       const newProduct = new Product({
         name,
+        category,
         price,
-        description,
-        image: result.secure_url, // ✅ Correct Cloudinary URL
+        discount,
+        stock,
         manufacturer,
-        brand,
         expiryDate,
         countryOfOrigin,
+        description,
+        usage,
+        sideEffects,
+        image: result.secure_url // ✅ Cloudinary Image URL
       });
 
       const savedProduct = await newProduct.save();
@@ -49,6 +60,7 @@ exports.createProduct = [
     }
   }
 ];
+
 
 
 
