@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const Signup = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     firstname: '',
@@ -41,6 +42,7 @@ const Signup = () => {
       const data = await response.json();
       if (response.ok) {
         setMessage(data.message);
+        navigate('/sign-in');
       } else {
         setMessage(data.error || 'Registration failed');
       }

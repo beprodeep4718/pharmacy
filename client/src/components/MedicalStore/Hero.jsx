@@ -46,7 +46,7 @@ const Hero = () => {
 
       <section className="p-6">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold text-blue-700">🔥 Today's Best Deals</h2>
+          <h2 className="text-2xl font-bold text-blue-700">🔥 Today&apos;s Best Deals</h2>
           <button className="text-blue-600 hover:text-blue-800 font-semibold focus:outline-none">
             See More →
           </button>
