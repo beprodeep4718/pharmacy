@@ -7,13 +7,13 @@ const cors = require('cors');
 
 const connectDB = require("./utils/db");
 const cookieParser = require("cookie-parser");
-// require("./cron/schedule");
+require("./cron/schedule");
 
 const PORT = process.env.PORT || 5000;
 
 // Middleware to parse JSON requests
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: process.env.CLIENT_URL,
   credentials: true
 }));
 app.use(express.json());
