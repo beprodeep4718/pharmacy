@@ -15,7 +15,7 @@ const ProductCard = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/products/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/products/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch product details");
         }
@@ -30,7 +30,7 @@ const ProductCard = () => {
 
     const fetchUserInfo = async () => {
       try {
-        const response = await fetch("http://localhost:5000/user/userinfo", {
+        const response = await fetch("${import.meta.env.VITE_SERVER_URL}/user/userinfo", {
           credentials: "include",
         });
         if (!response.ok) {
@@ -49,7 +49,7 @@ const ProductCard = () => {
 
   const handleAddToCart = async () => {
     try {
-      const response = await fetch("http://localhost:5000/user/add-to-cart", {
+      const response = await fetch("${import.meta.env.VITE_SERVER_URL}/user/add-to-cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

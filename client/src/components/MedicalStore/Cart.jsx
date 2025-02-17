@@ -10,11 +10,11 @@ const Cart = () => {
   useEffect(() => {
     const fetchCartData = async () => {
       try {
-        const userInfoResponse = await axios.get('http://localhost:5000/user/userinfo', {
+        const userInfoResponse = await axios.get(`${import.meta.env.VITE_SERVER_URL}/user/userinfo`, {
           withCredentials: true,
         });
         const userId = userInfoResponse.data._id;
-        const cartResponse = await axios.get(`http://localhost:5000/user/cart/${userId}`, {
+        const cartResponse = await axios.get(`${import.meta.env.VITE_SERVER_URL}/user/cart/${userId}`, {
           withCredentials: true,
         });
         setCartData(cartResponse.data.cart); // Store cart data in state
