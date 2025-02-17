@@ -1,6 +1,75 @@
 # Pharmacy Project
 
+![Home Page](client/public/assets/docs-home.png)
+
 This project is a pharmacy management system that includes user authentication and information retrieval.
+
+## Contributing
+
+We welcome contributions from the community! Please follow the steps below to set up the project locally and start contributing.
+### Local Setup
+
+1. **Clone the repository:**
+  ```bash
+  git clone https://github.com/your-username/pharmacy.git
+  cd pharmacy
+  ```
+
+2. **Install dependencies for the server:**
+  ```bash
+  cd server
+  npm install
+  ```
+
+3. **Install dependencies for the client:**
+  ```bash
+  cd ../client
+  npm install
+  ```
+
+4. **Set up environment variables:**
+  Create a `.env` file in the `server` directory and add the necessary environment variables. Refer to `server/.env.example` for the required variables.
+
+5. **Run the development server:**
+  ```bash
+  cd ../server
+  npm run dev
+  ```
+
+6. **Run the client:**
+  Open a new terminal and navigate to the `client` directory:
+  ```bash
+  cd client
+  npm start
+  ```
+
+7. **Run tests for the server:**
+  ```bash
+  cd ../server
+  npm test
+  ```
+
+### Submitting Changes
+
+1. **Create a new branch:**
+  ```bash
+  git checkout -b feature/your-feature-name
+  ```
+
+2. **Make your changes and commit them:**
+  ```bash
+  git commit -m "Add your commit message"
+  ```
+
+3. **Push to your branch:**
+  ```bash
+  git push origin feature/your-feature-name
+  ```
+
+4. **Create a pull request:**
+  Go to the repository on GitHub and create a pull request from your branch.
+
+
 
 ## Table of Contents
 - [Overview](#overview)
@@ -8,6 +77,8 @@ This project is a pharmacy management system that includes user authentication a
   - [User Login](#user-login)
   - [User Registration](#user-registration)
   - [User Information](#user-information)
+  - [Reminder Routes](#reminder-routes)
+  - [Product Routes](#product-routes)
 
 ## Overview
 This project provides a backend system for managing a pharmacy, including user authentication and user information retrieval.
@@ -136,3 +207,101 @@ curl -X GET http://localhost:5000/user/userinfo -H "Authorization: Bearer <token
 - `200 OK` on successful deletion
 - `401 Unauthorized` if no token is provided
 - `400 Bad Request` if the token is invalid
+
+### Product Routes
+
+#### Create a Product
+
+**URL:** `/api/products`
+
+**Method:** `POST`
+
+**Headers:**
+- `Content-Type: multipart/form-data`
+
+**Body:**
+- `image`: Image file
+- `data`: JSON string containing product details
+
+**Example:**
+```json
+{
+  "name": "Product Name",
+  "category": "Category",
+  "price": 100,
+  "discount": 10,
+  "stock": 50,
+  "manufacturer": "Manufacturer",
+  "expiryDate": "2023-12-31",
+  "countryOfOrigin": "Country",
+  "description": "Product description",
+  "usage": "Usage instructions",
+  "sideEffects": "Possible side effects"
+}
+```
+
+**Response:**
+- `201 Created` on success
+- `400 Bad Request` if image or data is missing
+- `500 Internal Server Error` on server error
+
+#### Get All Products
+
+**URL:** `/api/products`
+
+**Method:** `GET`
+
+**Response:**
+- `200 OK` with a list of products
+- `500 Internal Server Error` on server error
+
+#### Get Product by ID
+
+**URL:** `/api/products/:id`
+
+**Method:** `GET`
+
+**Response:**
+- `200 OK` with product details
+- `404 Not Found` if product not found
+- `500 Internal Server Error` on server error
+
+#### Update Product
+
+**URL:** `/api/products/:id`
+
+**Method:** `PUT`
+
+**Body:**
+```json
+{
+  "name": "Updated Product Name",
+  "category": "Updated Category",
+  "price": 120,
+  "discount": 15,
+  "stock": 60,
+  "manufacturer": "Updated Manufacturer",
+  "expiryDate": "2024-12-31",
+  "countryOfOrigin": "Updated Country",
+  "description": "Updated description",
+  "usage": "Updated usage instructions",
+  "sideEffects": "Updated possible side effects"
+}
+```
+
+**Response:**
+- `200 OK` on successful update
+- `404 Not Found` if product not found
+- `500 Internal Server Error` on server error
+
+#### Delete Product
+
+**URL:** `/api/products/:id`
+
+**Method:** `DELETE`
+
+**Response:**
+- `200 OK` on successful deletion
+- `404 Not Found` if product not found
+- `500 Internal Server Error` on server error
+
