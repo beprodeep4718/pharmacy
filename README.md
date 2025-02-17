@@ -69,7 +69,14 @@ We welcome contributions from the community! Please follow the steps below to se
 4. **Create a pull request:**
   Go to the repository on GitHub and create a pull request from your branch.
 
+  ## Tech Stack
 
+  This project is built using the MERN stack:
+
+  - **MongoDB**: A NoSQL database for storing and retrieving data.
+  - **Express.js**: A web application framework for Node.js.
+  - **React**: A JavaScript library for building user interfaces.
+  - **Node.js**: A JavaScript runtime for server-side programming.
 
 ## Table of Contents
 - [Overview](#overview)
