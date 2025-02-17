@@ -17,6 +17,16 @@ const UserSchema = new Schema(
         ref: "Reminder",
       },
     ],
+    cart: [
+      {
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Product", // Reference to Product model
+          required: true,
+        },
+        quantity: { type: Number, default: 1 },
+      },
+    ],
   },
   {
     timestamps: true,

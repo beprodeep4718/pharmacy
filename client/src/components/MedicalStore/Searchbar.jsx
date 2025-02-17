@@ -58,7 +58,7 @@ const Searchbar = () => {
         </div>
 
         <div className="flex gap-3">
-          <BsCart4 className="w-full h-[35px] scale-x-[-1]" />
+         <Link to="/cart"> <BsCart4 className="w-full h-[35px] scale-x-[-1]" /></Link>
 
           {user ? (
             

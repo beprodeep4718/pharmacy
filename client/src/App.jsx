@@ -10,6 +10,7 @@ import Signup from './components/Pages/Signup';
 import Profile from './components/Pages/Profile';
 import Footer  from './components/Footer';
 import ProductCard from './components/MedicalStore/ProductCard';
+import Cart from './components/MedicalStore/Cart';
 
 const App = () => {
   return (
@@ -32,7 +33,7 @@ const App = () => {
         <Route path="/pharmacy-store" element={<PharmacyStore />} />
         <Route path="/medicine-alarm" element={<MedicineAlarm />} />
         <Route path="/product/:id" element={<ProductCard />} />
-
+        <Route path="/cart" element={<Cart/>} />        
 
       </Routes>
       <Footer/>

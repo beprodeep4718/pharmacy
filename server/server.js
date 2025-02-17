@@ -7,7 +7,7 @@ const cors = require('cors');
 
 const connectDB = require("./utils/db");
 const cookieParser = require("cookie-parser");
-require("./cron/schedule");
+// require("./cron/schedule");
 
 const PORT = process.env.PORT || 5000;
 
