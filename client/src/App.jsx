@@ -1,16 +1,3 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import PharmacyStore from './components/MedicalStore/PharmacyStore';
-import MedicineAlarm from './components/MedicineAlarm';
-import Advantages from './components/Advantages';
-import Signin from './components/Pages/Signin';
-import Signup from './components/Pages/Signup';
-import Profile from './components/Pages/Profile';
-import Footer  from './components/Footer';
-import ProductCard from './components/MedicalStore/ProductCard';
-import Cart from './components/MedicalStore/Cart';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -24,6 +11,7 @@ import Profile from "./components/Pages/Profile";
 import Footer from "./components/Footer";
 import ProductCard from "./components/MedicalStore/ProductCard";
 import OrderTracking from "./components/OrderTracking";
+import Cart from './components/MedicalStore/Cart';
 
 
 const App = () => {
@@ -49,7 +37,6 @@ const App = () => {
         <Route path="/medicine-alarm" element={<MedicineAlarm />} />
         <Route path="/product/:id" element={<ProductCard />} />
         <Route path="/cart" element={<Cart/>} />        
-
         <Route path="/order-tracking" element={<OrderTracking />} />
       </Routes>
       <Footer />

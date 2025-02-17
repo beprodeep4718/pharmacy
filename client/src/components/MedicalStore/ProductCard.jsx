@@ -10,6 +10,7 @@ const ProductCard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -27,11 +28,49 @@ const ProductCard = () => {
       }
     };
 
+    const fetchUserInfo = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/user/userinfo", {
+          credentials: "include",
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch user info");
+        }
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      }
+    };
+
     fetchProduct();
+    fetchUserInfo();
   }, [id]);
 
-  const handleAddToCart = () => {
-    console.log(`Added ${quantity} of ${product.name} to cart`);
+  const handleAddToCart = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/user/add-to-cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          userId: user._id, // Use actual user ID
+          productId: product._id,
+          quantity,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add item to cart");
+      }
+
+      const data = await response.json();
+      console.log(`Added ${quantity} of ${product.name} to cart`, data);
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
   };
 
   if (loading) {
