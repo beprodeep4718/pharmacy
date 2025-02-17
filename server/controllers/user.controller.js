@@ -105,7 +105,12 @@ exports.getCart = async (req, res) => {
             return res.status(400).json({ error: "User ID is required" });
         }
 
-        const user = await User.findById(userId).populate("cart.product"); // Populate product details
+        // Populate cart with product details
+        const user = await User.findById(userId).populate({
+            path: 'cart.product',  // Populate the product details in the cart
+            model: 'Product',      // The model to use for population (Product)
+            select: 'name price discount image stock description usage sideEffects reviews averageRating' // Select the fields you need
+        });
 
         if (!user) {
             return res.status(404).json({ error: "User not found" });
@@ -117,4 +122,6 @@ exports.getCart = async (req, res) => {
         return res.status(500).json({ error: "Error fetching cart items" });
     }
 };
+
+
 
