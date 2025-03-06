@@ -6,6 +6,11 @@ const Product = require("../models/product.model");
 exports.register = async (req, res) => {
     try {
         const { fullname, email, password, phone } = req.body;
+        const userExists = await User
+            .findOne({ email });
+        if (userExists) {
+            return res.status(400).json({ error: "User already exists" });
+        }
         const hashedPassword = await bcrypt.hash(password, 10);
         const newUser = new User({
             fullname: {
